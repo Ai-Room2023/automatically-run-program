@@ -1,0 +1,38 @@
+how to automatically run program:
+
+first step: run .py program without typing in command line
+ in command line enter bellow command
+sudo nano /home/orin/.bashrc
+when it open at the end of it add bellow command
+echo Running at boot 
+sudo python /home/orin/Desktop/name of progrma.py
+
+second step: login automatically done:
+in command line enter bellow command
+sudo nano /etc/gdm3/custom.conf
+when it open uncomment this two lines and correct AutomaticLogin with user system name
+# Enabling automatic login
+  AutomaticLoginEnable = true
+  AutomaticLogin = orin
+
+third step: open terminal automatically:
+
+Press the Super key (windows key).
+Type "Startup Applications"
+Click on the Startup Applications option
+Click "Add"
+In the "name" field, type Terminal
+In the "command" field, type gnome-terminal
+Click "Add"
+
+
+fourth step: Disable the Sudo Command Password
+
+backup sudoers file.  Before making any changes, it’s good practice to back up the sudoers file:
+sudo cp /etc/sudoers /etc/sudoers.bak
+
+Edit the sudoers file. You should never edit the sudoers file directly with a regular text editor. Instead, use visudo:
+sudo visudo
+at the end of open file add bellow command with your user system name
+username ALL=(ALL:ALL) NOPASSWD: ALL
+
